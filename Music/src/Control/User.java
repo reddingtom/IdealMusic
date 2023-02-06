@@ -13,12 +13,12 @@ public class User {
     private String u_status;
     
     
-    public int getU_id() {
+    public int getId() {
         return u_id;
     }
 
-    public void setU_id(int u_id) {
-        this.u_id = u_id;
+    public void setId(int id) {
+        this.u_id = id;
     }
 
     public String getUsername() {

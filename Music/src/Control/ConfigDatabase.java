@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConfigDatabase {
     
@@ -196,6 +198,39 @@ public class ConfigDatabase {
             
         }
 
+    }
+        
+    public List<User> getUser() {
+        
+        String sql = "SELECT * FROM user";
+    
+        try {
+            
+            PreparedStatement stmt = this.conn.prepareStatement(sql);
+            ResultSet resultset = stmt.executeQuery();
+            List<User> listUser = new ArrayList<>();
+            
+            while (resultset.next()) {
+                
+                User user = new User();
+                user.setId(resultset.getInt("u_id"));
+                user.setUsername(resultset.getString("u_username"));
+                user.setEmail(resultset.getString("u_email"));
+                user.setPassword(resultset.getString("u_password"));
+                listUser.add(user);
+                
+            }
+            
+            return listUser;
+            
+        } catch (SQLException erro) {
+            
+            System.out.println("ERROR : " + erro.getMessage());
+            
+            return null;
+            
+        }
+    
     }
 
 }
